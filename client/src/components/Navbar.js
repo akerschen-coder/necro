@@ -20,18 +20,26 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-              {/* if user is logged in show saved books and logout */}
+            <Nav.Link as={Link} to= '/about' className="text-light">
+                About Us
+              </Nav.Link>
+              <Nav.Link  as={Link} to='/saved' className="text-light">
+                    Contact the Writers
+                  </Nav.Link>
+              {/* if user is logged in show saved charcters/stories and logout */}
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link  as={Link} to='/saved' className="text-light">
-                    Saved Recipes
+                    Saved Charcters
                   </Nav.Link>
                   <Nav.Link  onClick={Auth.logout} className="text-light">Logout</Nav.Link>
                 </>
               ) : (
                 <Nav.Link  onClick={() => setShowModal(true)} className="text-light">Login/Sign Up</Nav.Link>
               )}
+
             </Nav>
+            
           </Navbar.Collapse>
         </Container>
       </Navbar>

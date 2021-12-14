@@ -13,64 +13,87 @@ import Auth from "../utils/auth";
 
 
 export default function Intro() {
-     const [stories, setStories] = useState({});   
+    // hook for the data to be set into 
+     const [stories, setStories] = useState({});
+
     // set up save function 
-    // pull from local storage or from data base
+    // pull from local storage or from data base--
     // use effect to save 
     // also use useState and useMutation
 
     // formsubmit function
-    //has to target form
+    // has to target form 
 
 
+    // make function to link to charcters other items - swords, horses, etc
+        // fetch to api record.id.name.
 
-    // var Airtable = require('airtable');
-    // Airtable.configure({
-    //     endpointUrl: 'https://api.airtable.com',
-    //     apiKey: 'apprXO8priGdh1rRp.'
-    // });
-    // var base = Airtable.base('apprXO8priGdh1rRp');
+    
+    // secondary 
 
-    // useEffect(() => {
-    //     fetch("https://api.airtable.com/v0/appM9q6JTxRolaNCN/recipes?api_key=apprXO8priGdh1rRp.")
-    //       .then((res) => res.json())
-    //       .then((data) => {
-    //         setStories(data.records);
-    //         console.log(data);
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
-    //   }, []);
+        // twitch stream chat eventually on the side
+            // figma
 
-    // const handleFormSubmit = async (event) => {
-    //     event.preventDefault();
-    //     // if (!searchInput) {
-    //     //     return false;
-    //     // }
-    //     try {
+        // click on click on click in a tree (refer image on 12/11/21)
+            // click on 
+            //auto scroll up
+            // modal ontop of homepage 
+            // must be able to scroll up and down to see different entries 
+            // probably store in website -> website database 
+            // go to the page if wanted by button 
+            // max 16 posts- WP make elements -> embedded blog post inside a blog post 
+            // verification of who wins- graded by admins 
+      
+    const onLoad = async (event) => {
+        //event.preventDefault();
+        // if (!searchInput) {
+        //     return false;
+        // }
+        try {
+            var Airtable = require('airtable');
+            Airtable.configure({
+                endpointUrl: 'https://api.airtable.com',
+                apiKey: 'keyu8gUpzMHsUAyo2'
+            });
+            var base = Airtable.base('apprXO8priGdh1rRp');
 
-    //         if (!response.ok) {
-    //             throw new Error("something went wrong!");
-    //         }
+            const portals = base('Portals');
+
+            const getPortals = async () => {
+                const getRecords = await portals.select().firstPage();
+                console.log(getRecords);
+            }
+            getPortals();
+        
+            //   const response = await fetch(`https://api.airtable.com/v0/appM9q6JTxRolaNCN/?api_key=apprXO8priGdh1rRp.`)
+            // if (!response.ok) {
+            //     throw new Error("something went wrong!");
+            // }
+            // console.log(response);
     //         const { records } = await response.json();
 
     //         const dataD = records.map((record) => ({
     //             storyId: record.fields.Id,
-    //             name: record.fields.charcters
-    //         }));
+    //             name: record.fields.charcters,
+    //             description: record.fields.description
+    //         })); 
+    //         console.log(dataD);
+    
+    // //create another fetch pull that grabs age, stars/likes/ tags/ author
 
     //         setStories(dataD);
           
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // };
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    onLoad();
 
     return (
         <>
         <h1>
-            homepage dude
+            Fuck this authtificaiton shitklghjdilgha
         </h1>
             {/* <Jumbotron fluid className="text-light bg-info">
                 <Container>
@@ -120,17 +143,17 @@ export default function Intro() {
                                     </Button>
                                     {Auth.loggedIn() && (
                                         <Button
-                                            disabled={savedRecipeIds?.some(
+                                            disabled={savedCharIds?.some(
                                                 (savedRecipeId) => savedRecipeId === recipe.foodId
                                             )}
                                             className="btn-block btn-info"
-                                            onClick={() => handleSaveRecipe(recipe.foodId)}>
+                                            onClick={() => handleSaveChar(record.foodId)}>
 
                                             {savedRecipeIds?.some(
                                                 (savedRecipeId) => savedRecipeId === recipe.foodId
                                             )
                                                 ? "This recipe has already been saved!"
-                                                : "Save this Recipe!"}
+                                                : "Save this Character!"}
                                         </Button>
                                     )}
                                 </Card.Body>
